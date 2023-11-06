@@ -7,6 +7,7 @@ import com.project.post.repository.PostRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PostService {
     private final PostRepository postRepository;
@@ -40,27 +41,34 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-    public Long updatePost(Long id, PostRequestDto requestDto) {
-        Post Post = postRepository.findById(id);
-        if (Post != null) {
-            // Post 내용 수정
-            postRepository.update(id, requestDto);
+    public PostResponseDto updatePost(Long id, String password, PostRequestDto requestDto) {
+        Post post = postRepository.findById(id);
+        password = password.replaceAll("\"", "");
 
-            return id;
-        } else {
+        if(post == null){
             throw new IllegalArgumentException("선택한 게시글은 존재하지 않습니다.");
+        }
+        if (!Objects.equals(post.getPassword(), password)){
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
+       } else {
+            postRepository.update(id, requestDto);
+            return new PostResponseDto(post);
         }
     }
 
-    public Long deletePost(Long id) {
-        Post Post = postRepository.findById(id);
-        if (Post != null) {
+    public Long deletePost(Long id, String password) {
+        Post post = postRepository.findById(id);
+        password = password.replaceAll("\"", "");
+        if(post ==null){
+            throw new IllegalArgumentException("선택한 게시글은 존재하지 않습니다.");
+        }
+        if (!Objects.equals(post.getPassword(), password)){
+            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
+        } else {
             // Post 삭제
             postRepository.delete(id);
 
             return id;
-        } else {
-            throw new IllegalArgumentException("선택한 게시글은 존재하지 않습니다.");
         }
     }
 

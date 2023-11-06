@@ -90,6 +90,7 @@ public class PostRepository {
                 post.setId(resultSet.getLong("id"));
                 post.setUsername(resultSet.getString("username"));
                 post.setContents(resultSet.getString("contents"));
+                post.setPassword(resultSet.getString("password"));
                 post.setTitle(resultSet.getString("title"));
                 String temp = resultSet.getString("createdAt");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
