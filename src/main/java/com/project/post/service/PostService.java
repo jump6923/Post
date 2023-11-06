@@ -41,14 +41,14 @@ public class PostService {
         return new PostResponseDto(post);
     }
 
-    public PostResponseDto updatePost(Long id, String password, PostRequestDto requestDto) {
+    public PostResponseDto updatePost(Long id, PostRequestDto requestDto) {
         Post post = postRepository.findById(id);
-        password = password.replaceAll("\"", "");
+       //password = password.replaceAll("\"", "");
 
         if(post == null){
             throw new IllegalArgumentException("선택한 게시글은 존재하지 않습니다.");
         }
-        if (!Objects.equals(post.getPassword(), password)){
+        if (!Objects.equals(post.getPassword(), requestDto.getPassword())){
             throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
        } else {
             postRepository.update(id, requestDto);

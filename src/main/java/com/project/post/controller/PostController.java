@@ -34,12 +34,12 @@ public class PostController {
     }
 
     @PatchMapping("/post/{id}")
-    public PostResponseDto updatePost(@PathVariable Long id, @RequestParam String password, @RequestBody PostRequestDto requestDto) {
-        return postService.updatePost(id, password, requestDto);
+    public PostResponseDto updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+        return postService.updatePost(id,  requestDto);
     }
 
     @DeleteMapping("/post/{id}")
-    public Long deletePost(@PathVariable Long id, @RequestParam String password) {
+    public Long deletePost(@PathVariable Long id, @RequestBody String password) {
         return postService.deletePost(id, password);
     }
 
