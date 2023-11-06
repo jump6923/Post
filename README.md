@@ -25,10 +25,13 @@ Spring 익명게시판
         - 선택한 게시글의 `비밀번호`와 요청할 때 함께 보낸 `비밀번호`가 일치할 경우에만 삭제가 가능합니다.
      
 # usecase
+![usecase](/src/images/USECASE.PNG)
 
 # ERD
+![ERD](/src/images/ERD.PNG)
 
 # API
+![API](/src/images/API.PNG)
 
 # Problem
 JPA가 아닌 JDBC 적용
