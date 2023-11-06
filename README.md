@@ -24,7 +24,7 @@ Spring 익명게시판
         - 서버에 게시글 삭제를 요청할 때 `비밀번호`를 함께 전달합니다.
         - 선택한 게시글의 `비밀번호`와 요청할 때 함께 보낸 `비밀번호`가 일치할 경우에만 삭제가 가능합니다.
      
-# usecase
+# USECASE
 ![usecase](/src/images/USECASE.PNG)
 
 # ERD
